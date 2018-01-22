@@ -5,7 +5,7 @@
 * @date 2015-12-11
  */
 
-package misc
+package gomisc
 
 import (
 	"math/rand"
