@@ -6,8 +6,6 @@ import (
 )
 
 func TestIntSliceUnique(t *testing.T) {
-	PrintCallerFuncNameForTest()
-
 	s := []int{1, 2, 2, 3, 3, 3, 4, 4, 4, 4}
 
 	fmt.Println("origin slice is: ", s)
@@ -18,8 +16,6 @@ func TestIntSliceUnique(t *testing.T) {
 }
 
 func TestStringSliceUnique(t *testing.T) {
-	PrintCallerFuncNameForTest()
-
 	s := []string{"a", "ab", "ab", "abc", "abc", "abc", "abcd", "abcd", "abcd", "abcd", "abcd"}
 
 	fmt.Println("origin slice is: ", s)
@@ -30,8 +26,6 @@ func TestStringSliceUnique(t *testing.T) {
 }
 
 func TestFileExist(t *testing.T) {
-	PrintCallerFuncNameForTest()
-
 	f := "/etc/passwd"
 
 	r := FileExist(f)
@@ -43,8 +37,6 @@ func TestFileExist(t *testing.T) {
 }
 
 func TestDirExist(t *testing.T) {
-	PrintCallerFuncNameForTest()
-
 	d := "/home/ligang/devspace"
 
 	r := DirExist(d)
@@ -56,8 +48,6 @@ func TestDirExist(t *testing.T) {
 }
 
 func TestAppendBytes(t *testing.T) {
-	PrintCallerFuncNameForTest()
-
 	b := []byte("abc")
 	b = AppendBytes(b, []byte("def"), []byte("ghi"))
 
@@ -65,8 +55,6 @@ func TestAppendBytes(t *testing.T) {
 }
 
 func TestListFilesInDir(t *testing.T) {
-	PrintCallerFuncNameForTest()
-
 	fileList, err := ListFilesInDir("/home/ligang/tmp")
 	if err != nil {
 		t.Log(err)
@@ -75,5 +63,31 @@ func TestListFilesInDir(t *testing.T) {
 
 	for _, path := range fileList {
 		t.Log(path)
+	}
+}
+
+func TestSaveParseJsonFile(t *testing.T) {
+	filePath := "/tmp/test_save_parse_json_file.json"
+
+	v1 := make(map[string]string)
+	v1["k1"] = "a"
+	v1["k2"] = "b"
+	v1["k3"] = "c"
+
+	err := SaveJsonFile(filePath, v1)
+	if err != nil {
+		t.Error("save json file failed: " + err.Error())
+	}
+
+	v2 := make(map[string]string)
+	err = ParseJsonFile(filePath, &v2)
+	if err != nil {
+		t.Error("parse json file failed: " + err.Error())
+	}
+
+	for k, v := range v2 {
+		if v != v1[k] {
+			t.Error("save parse json file error, k: " + k + " not equal")
+		}
 	}
 }

@@ -8,13 +8,11 @@
 package gomisc
 
 import (
-	"github.com/goinbox/color"
-
 	"bytes"
+	"encoding/json"
 	"errors"
-	"fmt"
+	"io/ioutil"
 	"os"
-	"runtime"
 	"strings"
 )
 
@@ -69,14 +67,6 @@ func DirExist(path string) bool {
 	return false
 }
 
-func PrintCallerFuncNameForTest() {
-	pc, _, _, _ := runtime.Caller(1)
-	f := runtime.FuncForPC(pc)
-
-	c := color.Yellow([]byte(f.Name()))
-	fmt.Println(string(c))
-}
-
 func AppendBytes(b []byte, elems ...[]byte) []byte {
 	buf := bytes.NewBuffer(b)
 	for _, e := range elems {
@@ -118,4 +108,26 @@ func ListFilesInDir(rootDir string) ([]string, error) {
 	}
 
 	return fileList, nil
+}
+
+func SaveJsonFile(filePath string, v interface{}) error {
+	jsonBytes, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	return ioutil.WriteFile(filePath, jsonBytes, 0644)
+}
+
+func ParseJsonFile(filePath string, v interface{}) error {
+	if !FileExist(filePath) {
+		return errors.New("confFile " + filePath + " not exists")
+	}
+
+	jsonBytes, err := ioutil.ReadFile(filePath)
+	if err != nil {
+		return err
+	}
+
+	return json.Unmarshal(jsonBytes, v)
 }
