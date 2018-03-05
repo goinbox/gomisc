@@ -131,3 +131,14 @@ func ParseJsonFile(filePath string, v interface{}) error {
 
 	return json.Unmarshal(jsonBytes, v)
 }
+
+func SubString(str string, start, cnt int) (string, error) {
+	end := start + cnt
+	if len(str) < end {
+		return "", errors.New("end too long")
+	}
+
+	rs := []rune(str)
+
+	return string(rs[start:end]), nil
+}

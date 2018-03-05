@@ -91,3 +91,16 @@ func TestSaveParseJsonFile(t *testing.T) {
 		}
 	}
 }
+
+func TestSubString(t *testing.T) {
+	s := "abcdefg"
+
+	_, err := SubString(s, 3, 20)
+	t.Log(err)
+
+	_, err = SubString(s, 10, 3)
+	t.Log(err)
+
+	ss, _ := SubString(s, 3, 4)
+	t.Log(ss)
+}
