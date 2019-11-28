@@ -15,6 +15,16 @@ func TestIntSliceUnique(t *testing.T) {
 	fmt.Println("after call slice is: ", s)
 }
 
+func TestInt64SliceUnique(t *testing.T) {
+	s := []int64{1, 2, 2, 3, 3, 3, 4, 4, 4, 4}
+
+	fmt.Println("origin slice is: ", s)
+
+	s = Int64SliceUnique(s)
+
+	fmt.Println("after call slice is: ", s)
+}
+
 func TestStringSliceUnique(t *testing.T) {
 	s := []string{"a", "ab", "ab", "abc", "abc", "abc", "abcd", "abcd", "abcd", "abcd", "abcd"}
 
