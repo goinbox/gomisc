@@ -105,6 +105,7 @@ func ListFilesInDir(rootDir string) ([]string, error) {
 				fileList = append(fileList, path)
 			}
 		}
+		_ = file.Close()
 	}
 
 	return fileList, nil
