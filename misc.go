@@ -31,6 +31,21 @@ func IntSliceUnique(s []int) []int {
 	return r
 }
 
+func Int64SliceUnique(s []int64) []int64 {
+	m := make(map[int64]bool)
+	r := make([]int64, 0, cap(s))
+
+	for _, k := range s {
+		_, ok := m[k]
+		if !ok {
+			r = append(r, k)
+			m[k] = true
+		}
+	}
+
+	return r
+}
+
 func StringSliceUnique(s []string) []string {
 	m := make(map[string]bool)
 	r := make([]string, 0, cap(s))
