@@ -13,17 +13,17 @@ import (
 )
 
 const (
-	TIME_FMT_STR_YEAR   = "2006"
-	TIME_FMT_STR_MONTH  = "01"
-	TIME_FMT_STR_DAY    = "02"
-	TIME_FMT_STR_HOUR   = "15"
-	TIME_FMT_STR_MINUTE = "04"
-	TIME_FMT_STR_SECOND = "05"
+	TimeFmtStrYear   = "2006"
+	TimeFmtStrMonth  = "01"
+	TimeFmtStrDay    = "02"
+	TimeFmtStrHour   = "15"
+	TimeFmtStrMinute = "04"
+	TimeFmtStrSecond = "05"
 )
 
 func TimeGeneralLayout() string {
-	layout := TIME_FMT_STR_YEAR + "-" + TIME_FMT_STR_MONTH + "-" + TIME_FMT_STR_DAY + " "
-	layout += TIME_FMT_STR_HOUR + ":" + TIME_FMT_STR_MINUTE + ":" + TIME_FMT_STR_SECOND
+	layout := TimeFmtStrYear + "-" + TimeFmtStrMonth + "-" + TimeFmtStrDay + " "
+	layout += TimeFmtStrHour + ":" + TimeFmtStrMinute + ":" + TimeFmtStrSecond
 
 	return layout
 }
