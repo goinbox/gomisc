@@ -8,6 +8,7 @@
 package gomisc
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
 )
@@ -22,10 +23,8 @@ const (
 )
 
 func TimeGeneralLayout() string {
-	layout := TimeFmtStrYear + "-" + TimeFmtStrMonth + "-" + TimeFmtStrDay + " "
-	layout += TimeFmtStrHour + ":" + TimeFmtStrMinute + ":" + TimeFmtStrSecond
-
-	return layout
+	return fmt.Sprintf("%s-%s-%s %s:%s:%s",
+		TimeFmtStrYear, TimeFmtStrMonth, TimeFmtStrDay, TimeFmtStrHour, TimeFmtStrMinute, TimeFmtStrSecond)
 }
 
 func RandByTime(t *time.Time) int64 {
