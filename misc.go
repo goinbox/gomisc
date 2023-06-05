@@ -143,3 +143,7 @@ func SubString(str string, start, cnt int) (string, error) {
 
 	return string(rs[start:end]), nil
 }
+
+func PrettyJson(v interface{}) ([]byte, error) {
+	return json.MarshalIndent(v, "", "    ")
+}
